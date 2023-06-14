@@ -23,13 +23,13 @@ public class UniversityController {
         this.universityService = universityService;
     }
 
-    @GetMapping("/search_by_name")
+    @GetMapping(value = "/search", params = "name")
     public ResponseEntity<List<University>> searchByName(@RequestParam String name) {
         List<University> universityList = universityService.searchByName(name);
         return new ResponseEntity<>(universityList, HttpStatus.OK);
     }
 
-    @GetMapping("/search_by_country")
+    @GetMapping(value = "/search", params = "country")
     public ResponseEntity<List<University>> searchByCountry(@RequestParam String country) {
         List<University> universityList = universityService.searchByCountry(country);
         return new ResponseEntity<>(universityList, HttpStatus.OK);
