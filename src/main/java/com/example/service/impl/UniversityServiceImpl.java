@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+import static com.example.constants.Url.UNIVERSITY_API_URL;
+
 @Service
 public class UniversityServiceImpl implements UniversityService {
-
-    public static final String URL = "http://universities.hipolabs.com/search";
 
     private final RestTemplate restTemplate;
 
@@ -22,14 +22,14 @@ public class UniversityServiceImpl implements UniversityService {
 
     @Override
     public List<University> searchByName(String name) {
-        String api = URL + String.format("?name=%s", name);
+        String api = UNIVERSITY_API_URL + String.format("/search?name=%s", name);
         List<University> universityList = restTemplate.getForObject(api, List.class);
         return universityList;
     }
 
     @Override
     public List<University> searchByCountry(String country) {
-        String api = URL + String.format("?country=%s", country);
+        String api = UNIVERSITY_API_URL + String.format("/search?country=%s", country);
         List<University> universityList = restTemplate.getForObject(api, List.class);
         return universityList;
     }
